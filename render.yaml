@@ -1,0 +1,21 @@
+# Render.com configuration (alternative to Fly.io)
+# Connect your GitHub repo at https://render.com and it deploys automatically
+
+services:
+  - type: web
+    name: jcg-hunt-tracker
+    runtime: docker
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8080"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_PATH
+        value: /data/hunting.db
+    disk:
+      name: jcg-data
+      mountPath: /data
+      sizeGB: 1
